@@ -11,30 +11,87 @@ local composer = require( "composer" )
 -- Name the Scene
 sceneName = "splash_screen"
 
+-- hide the status bar
+display.setStatusBar(display.HiddenStatusBar)
+
+--add the logo image
+local logo = display.newImageRect("Images/CompanyLogoSaschaM@2x.png", 600, 600)
+
+
+-- variable for speed of the logo
+scrollSpeedLogo = 9
+
+-- set the transparency of the Logo
+logo.alpha = 0
+-- controls if logo is more or less transparent
+local fadeLogo = 1
+-- controls the x direction of the logo
+local directionLogo = 1
+
+
+
+--------------------------------------------
+--SOUNDS
+--------------------------------------------
+-- play sound effect
+-- Logo sound
+local logoSound = audio.loadSound("Sounds/logoSound2.mp3" ) 
+-- Setting a variable to an mp3 file
+local logoSoundChannel = audio.play(logoSound)
+--------------------------------------------
+
+--MoveLogo will be called 
+Runtime:addEventListener("enterFrame", MoveLogo)
+
+--make logo spin
+transition.to( logo, { rotation = logo.rotation-1440, time=17000, onComplete=spinImage } )
+
+
+
+
+
+
+
+
+
+
+
+
 -----------------------------------------------------------------------------------------
 
 -- Create Scene Object
 local scene = composer.newScene( sceneName )
 
-----------------------------------------------------------------------------------------
--- LOCAL VARIABLES
------------------------------------------------------------------------------------------
- 
--- The local variables for this scene
-local beetleship
-local scrollXSpeed = 8
-local scrollYSpeed = -3
-local jungleSounds = audio.loadSound("Sounds/animals144.mp3")
-local jungleSoundsChannel
-
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
 
--- The function that moves the beetleship across the screen
-local function moveBeetleship()
-    beetleship.x = beetleship.x + scrollXSpeed
-    beetleship.y = beetleship.y + scrollYSpeed
+--Function: MoveLogo
+-- Input: this function accepts and event listener
+--Description: This function adds the scroll speed to the x-value of the logo
+local function MoveLogo (event)
+    -- make the logo more transparent if it is fully visible
+    if  logo.alpha == 1 then
+        fadeLogo = 0
+    end
+    -- make the logo less transparent if it is fully transparent
+    if logo.alpha == 0 then
+        fadeLogo = 1
+    end
+
+    -- change the transparency of the logo based on fadeLogo
+    if fadeLogo == 1 then
+        logo.alpha = logo.alpha + 0.02
+    else
+       logo.alpha = logo.alpha - 0.02
+    end
+
+    -- change x position of logo based on directionLogo
+    if directionLogo == 1 then
+        logo.x = logo.x + scrollSpeedLogo
+    else
+        logo.x = logo.x - scrollSpeedLogo
+    end
 end
 
 -- The function that will go to the main menu 
@@ -52,18 +109,18 @@ function scene:create( event )
     -- Creating a group that associates objects with the scene
     local sceneGroup = self.view
 
-    -- set the background to be black
-    display.setDefault("background", 0, 0, 0)
+    -- sets the background colour
+    display.setDefault("background", 192/255, 192/255, 192/255 )
 
-    -- Insert the beetleship image
-    beetleship = display.newImageRect("Images/beetleship.png", 200, 200)
+    -- Insert the logo image
+    logo = display.newImageRect("Images/CompanyLogoSaschaM@2x.png", 600, 600)
 
-    -- set the initial x and y position of the beetleship
-    beetleship.x = 100
-    beetleship.y = display.contentHeight/2
+    --set initial x and y position of the logo
+    logo.x = -500
+    logo.y = display.contentHeight/2
 
     -- Insert objects into the scene group in order to ONLY be associated with this scene
-    sceneGroup:insert( beetleship )
+    sceneGroup:insert( logo )
 
 end -- function scene:create( event )
 
@@ -88,10 +145,10 @@ function scene:show( event )
 
     elseif ( phase == "did" ) then
         -- start the splash screen music
-        jungleSoundsChannel = audio.play(jungleSounds )
+        logoSoundChannel = audio.play(logoSound)
 
         -- Call the moveBeetleship function as soon as we enter the frame.
-        Runtime:addEventListener("enterFrame", moveBeetleship)
+        Runtime:addEventListener("enterFrame", MoveLogo)
 
         -- Go to the main menu screen after the given time.
         timer.performWithDelay ( 3000, gotoMainMenu)          
@@ -121,8 +178,6 @@ function scene:hide( event )
     -- Called immediately after scene goes off screen.
     elseif ( phase == "did" ) then
         
-        -- stop the jungle sounds channel for this screen
-        audio.stop(jungleSoundsChannel)
     end
 
 end --function scene:hide( event )
