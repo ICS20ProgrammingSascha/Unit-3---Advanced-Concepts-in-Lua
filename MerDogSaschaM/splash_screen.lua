@@ -17,9 +17,8 @@ display.setStatusBar(display.HiddenStatusBar)
 --add the logo image
 local logo = display.newImageRect("Images/CompanyLogoSaschaM@2x.png", 600, 600)
 
-
 -- variable for speed of the logo
-scrollSpeedLogo = 9
+local scrollSpeedLogo = 9
 
 -- set the transparency of the Logo
 logo.alpha = 0
@@ -60,7 +59,7 @@ transition.to( logo, { rotation = logo.rotation-1440, time=17000, onComplete=spi
 -----------------------------------------------------------------------------------------
 
 -- Create Scene Object
-local scene = composer.newScene( sceneName )
+--local mainMenuScene = composer.newScene( main_menu )
 
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -99,6 +98,8 @@ local function gotoMainMenu()
     composer.gotoScene( "main_menu" )
 end
 
+--Calling mainMenu
+gotoMainMenu()
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
