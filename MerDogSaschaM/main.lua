@@ -1,11 +1,13 @@
 -- main.lua
--- Created by: Sascha Motz
+-- Title: SampleVideoGame
+-- Name: Sascha Motz
+-- Course: ICS2O/3C
+-- This program This calls the splash screen of the app to load itself.
 -- Date: November 12, 2018
--- Description: This calls the splash screen of the app to load itself.
 -----------------------------------------------------------------------------------------
 
--- Hiding Status Bar
--- HIDE THE STATUS BAR
+-- hide the status bar
+display.setStatusBar(display.HiddenStatusBar)
 
 -----------------------------------------------------------------------------------------
 
@@ -16,3 +18,5 @@ local composer = require( "composer" )
 
 -- Go to the intro screen
 composer.gotoScene( "splash_screen" )
+
+

@@ -39,11 +39,7 @@ local logoSound = audio.loadSound("Sounds/logoSound2.mp3" )
 local logoSoundChannel = audio.play(logoSound)
 --------------------------------------------
 
---MoveLogo will be called 
-Runtime:addEventListener("enterFrame", MoveLogo)
 
---make logo spin
-transition.to( logo, { rotation = logo.rotation-1440, time=17000, onComplete=spinImage } )
 
 
 
@@ -59,8 +55,7 @@ transition.to( logo, { rotation = logo.rotation-1440, time=17000, onComplete=spi
 -----------------------------------------------------------------------------------------
 
 -- Create Scene Object
---local mainMenuScene = composer.newScene( main_menu )
-
+local scene = composer.newScene( sceneName )
 --------------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 --------------------------------------------------------------------------------------------
@@ -93,13 +88,20 @@ local function MoveLogo (event)
     end
 end
 
+--MoveLogo will be called 
+Runtime:addEventListener("enterFrame", MoveLogo)
+
+--make logo spin
+transition.to( logo, { rotation = logo.rotation-1440, time=17000, onComplete=spinImage } )
+
+
 -- The function that will go to the main menu 
 local function gotoMainMenu()
     composer.gotoScene( "main_menu" )
 end
 
 --Calling mainMenu
-gotoMainMenu()
+--gotoMainMenu()
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -177,7 +179,7 @@ function scene:hide( event )
     -----------------------------------------------------------------------------------------
 
     -- Called immediately after scene goes off screen.
-    elseif ( phase == "did" ) then
+    --elseif ( phase == "did" ) then
         
     end
 
