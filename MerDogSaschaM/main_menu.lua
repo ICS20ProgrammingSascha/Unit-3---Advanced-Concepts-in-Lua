@@ -117,8 +117,8 @@ function scene:create( event )
             y = display.contentHeight*7/8,
 
             -- Insert the images here
-            defaultFile = "Images/Credits Button Unpressed.png",
-            overFile = "Images/Credits Button Pressed.png",
+            defaultFile = "Images/CreditsUnpressedThomasW.png",
+            overFile = "Images/CreditsPressedThomasW.png",
 
             width = 200,
             height = 100,
@@ -132,12 +132,12 @@ function scene:create( event )
     instructionsButton = widget.newButton( 
         {   
             -- Set its position on the screen relative to the screen size
-            x = display.contentWidth/7,
+            x = display.contentWidth/6,
             y = display.contentHeight*7/8,
 
             -- Insert the images here
-            defaultFile = "Images/Instructions Button.png",
-            overFile = "Images/Instructions Button Pressed.png",
+            defaultFile = "Images/InstrucUnpressedSM.png",
+            overFile = "Images/InstrucPressedSM.png",
 
             width = 200,
             height = 100,

@@ -15,7 +15,7 @@ sceneName = "splash_screen"
 display.setStatusBar(display.HiddenStatusBar)
 
 --add the logo image
-local logo = display.newImageRect("Images/CompanyLogoSaschaM@2x.png", 600, 600)
+local logo = display.newImageRect("Images/CompanyLogoSaschaM.png", 600, 600)
 
 -- variable for speed of the logo
 local scrollSpeedLogo = 9
@@ -38,19 +38,6 @@ local logoSound = audio.loadSound("Sounds/logoSound2.mp3" )
 -- Setting a variable to an mp3 file
 local logoSoundChannel = audio.play(logoSound)
 --------------------------------------------
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 -----------------------------------------------------------------------------------------
 
