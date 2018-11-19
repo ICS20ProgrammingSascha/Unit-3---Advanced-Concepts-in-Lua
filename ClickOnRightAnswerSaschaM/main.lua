@@ -1,7 +1,7 @@
 -----------------------------------------------------------------------------------------
 -- main.lua
 -- Created by: Gil Robern
--- Modified by: Your Name
+-- Modified by: sascha Motz
 -- Date: Month Day, Year
 -- Description: This calls the splash screen of the app to load itself.
 -----------------------------------------------------------------------------------------
@@ -16,4 +16,4 @@ local composer = require( "composer" )
 
 -----------------------------------------------------------------------------------------
 
-composer.gotoScene( "level1_screen" )
+composer.gotoScene( "you_win" )
