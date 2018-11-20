@@ -3,7 +3,8 @@
 -- Created by: Gil Robern
 -- Modified by: Sascha Motz
 -- Date: Month Day, Year
--- Description: This shows the player that they lost the game and plays a booing sound.
+-- Description: This shows the player that they lost the 
+--game and plays a booing sound.
 -----------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------
@@ -39,10 +40,6 @@ local winSoundChannel
 
 -- local variables for the scene
 local bkg
-
------------------------------------------------------------------------------------------
--- LOCAL FUNCTIONS
------------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
@@ -114,6 +111,7 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
+        audio.stop()
 
     -----------------------------------------------------------------------------------------
 
@@ -152,4 +150,3 @@ scene:addEventListener( "destroy", scene )
 -----------------------------------------------------------------------------------------
 
 return scene
-

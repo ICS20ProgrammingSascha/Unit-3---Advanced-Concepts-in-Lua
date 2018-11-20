@@ -1,5 +1,5 @@
 -----------------------------------------------------------------------------------------
---
+-- level1_screen.lua
 -- level1_screen.lua
 -- Created by: Gil Robern
 -- Modified by: Your Name
@@ -39,7 +39,7 @@ local bkg
 
 -- determine the range for the numbers to add
 local MIN_NUM = 1
-local MAX_NUM = 9
+local MAX_NUM = 13
 
 -- the variables containing the first and second numbers to add for the equation
 local firstNumber
@@ -80,7 +80,6 @@ local level1Text
 -- Boolean variable that states if user clicked the answer or not
 local alreadyClickedAnswer = false
 
-
 -----------------------------------------------------------------------------------------
 -- SOUND
 -----------------------------------------------------------------------------------------
@@ -106,9 +105,9 @@ local incorrectSoundChannel
 local function DetermineAnswers()
     -- calculate the correct answer as well as the wrong answers
     answer = firstNumber + secondNumber
-    wrongAnswer1 = answer + math.random(2,4)
-    wrongAnswer2 = answer + math.random(3,8)
-    wrongAnswer3 = answer + math.random(3,7)
+    wrongAnswer1 = answer + math.random(1,3)
+    wrongAnswer2 = answer + math.random(4,8)
+    wrongAnswer3 = answer + math.random(9,13)
 end
 
 -- Function that changes the answers for a new question and places them randomly in one of the positions
@@ -194,6 +193,10 @@ local function RestartScene()
         DisplayAddEquation()
         DetermineAnswers()
         DisplayAnswers()
+    end
+
+    if (numberCorrect == 5) then
+        composer.gotoScene("you_win")
     end
 end
 
@@ -312,14 +315,8 @@ local function RemoveTextObjectListeners()
 end
 
 -----------------------------------------------------------------------------------------
--- GLOBAL FUNCTIONS
------------------------------------------------------------------------------------------
-
-
------------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
-
 
 -- The function called when the screen doesn't exist
 function scene:create( event )
@@ -392,10 +389,6 @@ function scene:create( event )
     sceneGroup:insert( incorrect )
     sceneGroup:insert( level1Text )
 end
-
-
------------------------------------------------------------------------------------------
-
 -----------------------------------------------------------------------------------------
 
 -- The function called when the scene is issued to appear on screen

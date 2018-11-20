@@ -3,7 +3,8 @@
 -- Created by: Gil Robern
 -- Modified by: Sascha Motz
 -- Date: November 19, 2018
--- Description: This shows the player that they lost the game and plays a booing sound.
+-- Description: This shows the player that 
+--they lost the game and plays a booing sound.
 -----------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------
@@ -26,6 +27,14 @@ sceneName = "you_lose"
 local scene = composer.newScene( sceneName )
 
 -----------------------------------------------------------------------------------------
+-- SOUNDS
+-----------------------------------------------------------------------------------------
+-- lose game sound
+local loseSound = audio.loadSound("Sounds/Kids Booing.mp3" ) 
+-- Setting a variable to an mp3 file
+local loseSoundChannel
+
+-----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
 
@@ -33,13 +42,8 @@ local scene = composer.newScene( sceneName )
 local bkg
 
 -----------------------------------------------------------------------------------------
--- LOCAL FUNCTIONS
------------------------------------------------------------------------------------------
-
------------------------------------------------------------------------------------------
 -- GLOBAL SCENE FUNCTIONS
 -----------------------------------------------------------------------------------------
-
 
 -- The function called when the screen doesn't exist
 function scene:create( event )
@@ -83,7 +87,8 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
-        audio.stop()
+        -- play losing sound
+        loseSoundChannel = audio.play(loseSound)
     end
 
 end
@@ -106,7 +111,7 @@ function scene:hide( event )
         -- Called when the scene is on screen (but is about to go off screen).
         -- Insert code here to "pause" the scene.
         -- Example: stop timers, stop animation, stop audio, etc.
-
+        audio.stop()
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
@@ -144,4 +149,3 @@ scene:addEventListener( "destroy", scene )
 -----------------------------------------------------------------------------------------
 
 return scene
-
