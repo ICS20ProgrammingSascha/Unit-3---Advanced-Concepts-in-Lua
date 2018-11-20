@@ -84,7 +84,7 @@ local alreadyClickedAnswer = false
 -----------------------------------------------------------------------------------------
 -- SOUND
 -----------------------------------------------------------------------------------------
--- win game sound
+-- bkg game music
 local bkgMusic = audio.loadSound("Sounds/bkgMusic.mp3" ) 
 -- Setting a variable to an mp3 file
 local bkgMusicChannel
@@ -347,11 +347,11 @@ function scene:create( event )
     wrongAnswer1TextObject = display.newText("", display.contentWidth*.3, display.contentHeight/2, nil, 65 )
     wrongAnswer2TextObject = display.newText("", display.contentWidth*.2, display.contentHeight/2, nil, 65 )
     wrongAnswer3TextObject = display.newText("", display.contentWidth*.1, display.contentHeight/2, nil, 65 )
-    numberCorrectText = display.newText("", display.contentWidth*4/5, display.contentHeight*6/7, nil, 50)
+    numberCorrectText = display.newText("", display.contentWidth*4/5, display.contentHeight*6/7, nil, 30)
     numberIncorrectText = display.newText("", display.contentWidth*4/5, display.contentHeight*6/7, nil, 50)
 
     -- create the text object that will hold the number of lives
-    livesText = display.newText("", display.contentWidth*4/5, display.contentHeight*8/9, nil, 25) 
+    livesText = display.newText("", display.contentWidth*4/5, display.contentHeight*8/9, nil, 30) 
 
     -- create the text object that will say congratulations, set the colour and then hide it
     congratulationText = display.newText("Good job!", display.contentWidth/2, display.contentHeight*2/5, nil, 50 )
