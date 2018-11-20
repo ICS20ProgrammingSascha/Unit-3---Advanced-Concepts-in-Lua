@@ -26,6 +26,14 @@ sceneName = "you_win"
 local scene = composer.newScene( sceneName )
 
 -----------------------------------------------------------------------------------------
+-- SOUNDS
+-----------------------------------------------------------------------------------------
+-- win game sound
+local winSound = audio.loadSound("Sounds/youWinSound.wav" ) 
+-- Setting a variable to an mp3 file
+local winSoundChannel
+
+-----------------------------------------------------------------------------------------
 -- LOCAL VARIABLES
 -----------------------------------------------------------------------------------------
 
@@ -79,7 +87,8 @@ function scene:show( event )
     -----------------------------------------------------------------------------------------
 
     elseif ( phase == "did" ) then
-
+        -- play win sound
+        winSoundChannel = audio.play(winSound)
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.

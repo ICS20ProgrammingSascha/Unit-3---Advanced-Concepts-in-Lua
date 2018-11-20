@@ -1,8 +1,8 @@
 -----------------------------------------------------------------------------------------
 -- you_lose.lua
 -- Created by: Gil Robern
--- Modified by: Your Name
--- Date: Month Day, Year
+-- Modified by: Sascha Motz
+-- Date: November 19, 2018
 -- Description: This shows the player that they lost the game and plays a booing sound.
 -----------------------------------------------------------------------------------------
 
@@ -83,6 +83,7 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
+        audio.stop()
     end
 
 end
