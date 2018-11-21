@@ -58,11 +58,12 @@ local numLives = 2
 
 local rArrow 
 local uArrow
+local lArrow
 
 local motionx = 0
 local SPEED = 5
 local LINEAR_VELOCITY = -100
-local GRAVITY = 10
+local GRAVITY = 5
 
 local leftW 
 local topW
@@ -70,6 +71,7 @@ local floor
 
 local ball1
 local ball2
+local ball3
 local theBall
 
 local questionsAnswered = 0
@@ -91,6 +93,14 @@ local function up (touch)
     end
 end
 
+-- When left arrow is touched, move character left
+local function left (touch)
+    motionx = SPEED
+    character.xScale = -1
+end
+
+
+
 -- Move character horizontally
 local function movePlayer (event)
     character.x = character.x + motionx
@@ -111,6 +121,7 @@ end
 
 local function RemoveArrowEventListeners()
     rArrow:removeEventListener("touch", right)
+    lArrow:removeEventListener("touch", left)
     uArrow:removeEventListener("touch", up)
 end
 
@@ -152,6 +163,7 @@ end
 local function MakeSoccerBallsVisible()
     ball1.isVisible = true
     ball2.isVisible = true
+    ball3.isVisible = true
 end
 
 local function MakeHeartsVisible()
