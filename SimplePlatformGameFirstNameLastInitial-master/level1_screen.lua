@@ -61,7 +61,7 @@ local uArrow
 local lArrow
 
 local motionx = 0
-local SPEED = 5
+local SPEED = 6
 local LINEAR_VELOCITY = -100
 local GRAVITY = 5
 
