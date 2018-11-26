@@ -1,9 +1,9 @@
 -----------------------------------------------------------------------------------------
 --
--- you_win.lua
+-- you_lose.lua
 -- Sascha Motz
 -- Date: Nov. 26th, 2018
--- Description: This is the you win screen
+-- Description: This is the you lose screen
 -----------------------------------------------------------------------------------------
 
 -----------------------------------------------------------------------------------------
@@ -30,9 +30,10 @@ local scene = composer.newScene( sceneName ) -- This function doesn't accept a s
 -- SOUNDS
 -----------------------------------------------------------------------------------------
 -- lose game sound
-local winSound = audio.loadSound("Sounds/yabbadabbalaugh.wav" ) 
+local loseSound = audio.loadSound("Sounds/youLoseSound.mp3" ) 
 -- Setting a variable to an mp3 file
-local winSoundChannel
+local loseSoundChannel
+
 
 -----------------------------------------------------------------------------------------
 -- DISPLAY OBJECTS
@@ -50,7 +51,7 @@ function scene:create( event )
     -----------------------------------------------------------------------------------------
 
     -- Insert the background image and set it to the center of the screen
-    bkg_image = display.newImage("Images/Winscreen.png")
+    bkg_image = display.newImage("Images/Losescreen.png")
     bkg_image.x = display.contentCenterX
     bkg_image.y = display.contentCenterY
     bkg_image.width = display.contentWidth
@@ -82,8 +83,8 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
-        -- play win sound
-        winSoundChannel = audio.play(winSound)
+        -- play losing sound
+        loseSoundChannel = audio.play(loseSound)
     end
 
 end -- function scene:show( event )

@@ -1,8 +1,8 @@
 -----------------------------------------------------------------------------------------
 --
 -- main.lua
--- Created by: Daniel Lopez-Carreon
--- Date: Nov. 22nd, 2014
+-- Sascha Motz
+-- Date: Nov. 26nd, 2018
 -- Description: This calls the splash screen of the app to load itself.
 -----------------------------------------------------------------------------------------
 
