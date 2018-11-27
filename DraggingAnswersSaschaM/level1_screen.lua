@@ -70,6 +70,9 @@ local alternateAnswerBox3PreviousX
 -- the black box where the user will drag the answer
 local userAnswerBoxPlaceholder
 
+-- counter
+local numCorrect
+local numIncorrect
 -- sound effects
 local correctSound
 local booSound
@@ -117,7 +120,7 @@ local function DetermineAlternateAnswers()
     alternateAnswerBox2.text = alternateAnswer2
 
     -- generate incorrect answer and set it in the textbox
-    alternateAnswer3 = correctAnswer - math.random(2, 4)
+    alternateAnswer3 = correctAnswer - math.random(6, 7)
     alternateAnswerBox3.text = alternateAnswer3
 
 -------------------------------------------------------------------------------------------
@@ -202,7 +205,7 @@ local function PositionAnswers()
         answerbox.y = display.contentHeight * 0.85
 
         --alternateAnswerBox2
-        alternateAnswerBox2.y = display.contentHeight * 0.85
+        alternateAnswerBox2.y = display.contentHeight * 0.70
 
         --alternateAnswerBox1
         alternateAnswerBox1.y = display.contentHeight * 0.55
