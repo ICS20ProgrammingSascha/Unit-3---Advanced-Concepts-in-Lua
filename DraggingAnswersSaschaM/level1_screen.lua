@@ -36,6 +36,11 @@ local questionText
 
 --the alternate numbers randomly generated
 local correctAnswer
+local correctText
+local incorrectAnswer
+local incorrectText
+local scoreObject
+local score = 0
 local alternateAnswer1
 local alternateAnswer2   
 local alternateAnswer3 
@@ -120,7 +125,7 @@ local function DetermineAlternateAnswers()
     alternateAnswerBox2.text = alternateAnswer2
 
     -- generate incorrect answer and set it in the textbox
-    alternateAnswer3 = correctAnswer - math.random(6, 7)
+    alternateAnswer3 = correctAnswer + math.random(6, 7)
     alternateAnswerBox3.text = alternateAnswer3
 
 -------------------------------------------------------------------------------------------
@@ -146,7 +151,7 @@ local function PositionAnswers()
     -- random position 1
     if (randomPosition == 1) then
         -- set the new y-positions of each of the answers
-        answerbox.y = display.contentHeight * 0.4
+        answerbox.y = display.contentHeight * 0.40
 
         --alternateAnswerBox2
         alternateAnswerBox2.y = display.contentHeight * 0.70
@@ -166,16 +171,16 @@ local function PositionAnswers()
     -- random position 2
     elseif (randomPosition == 2) then
 
-        answerbox.y = display.contentHeight * 0.55
+        answerbox.y = display.contentHeight * 0.70
         
         --alternateAnswerBox2
-        alternateAnswerBox2.y = display.contentHeight * 0.4
+        alternateAnswerBox2.y = display.contentHeight * 0.55
 
         --alternateAnswerBox1
         alternateAnswerBox1.y = display.contentHeight * 0.85
 
         --alternateAnswerBox1
-        alternateAnswerBox3.y = display.contentHeight * 0.70
+        alternateAnswerBox3.y = display.contentHeight * 0.40
 
         --remembering their positions to return the answer in case it's wrong
         alternateAnswerBox1PreviousY = alternateAnswerBox1.y
@@ -184,16 +189,16 @@ local function PositionAnswers()
 
     -- random position 3
      elseif (randomPosition == 3) then
-        answerbox.y = display.contentHeight * 0.70
+        answerbox.y = display.contentHeight * 0.55
 
         --alternateAnswerBox2
         alternateAnswerBox2.y = display.contentHeight * 0.85
 
         --alternateAnswerBox1
-        alternateAnswerBox1.y = display.contentHeight * 0.4
+        alternateAnswerBox1.y = display.contentHeight * 0.40
 
         --alternateAnswerBox1
-        alternateAnswerBox3.y = display.contentHeight * 0.55
+        alternateAnswerBox3.y = display.contentHeight * 0.70
 
         --remembering their positions to return the answer in case it's wrong
         alternateAnswerBox1PreviousY = alternateAnswerBox1.y
@@ -205,19 +210,63 @@ local function PositionAnswers()
         answerbox.y = display.contentHeight * 0.85
 
         --alternateAnswerBox2
-        alternateAnswerBox2.y = display.contentHeight * 0.70
+        alternateAnswerBox2.y = display.contentHeight * 0.40
 
         --alternateAnswerBox1
-        alternateAnswerBox1.y = display.contentHeight * 0.55
+        alternateAnswerBox1.y = display.contentHeight * 0.70
 
         --alternateAnswerBox1
-        alternateAnswerBox3.y = display.contentHeight * 0.4
+        alternateAnswerBox3.y = display.contentHeight * 0.55
 
         --remembering their positions to return the answer in case it's wrong
         alternateAnswerBox1PreviousY = alternateAnswerBox1.y
         alternateAnswerBox2PreviousY = alternateAnswerBox2.y
         alternateAnswerBox3PreviousY = alternateAnswerBox3.y
         answerboxPreviousY = answerbox.y 
+    end
+end
+
+-- make the correct object visible
+local function HideCorrect()
+    correctText.isVisible = false
+    DisplayQuestion()
+end
+
+-- make the incorrect object visible
+local function HideIncorrect()
+    incorrectText.isVisible = false
+    DisplayQuestion()
+end
+
+-- function that operates decrese lives
+---local function DecreaseLives()
+
+    -- reset the number of seconds left
+   -- lives = lives - 1
+    --incorrectSoundChannel = audio.play(incorrectSound)
+    -- go to you lose screen
+   -- end
+--end
+
+local function Answers()
+    -- if the users answer and the correct answer are the same:
+    if (userAnswer == correctAnswer) then
+        correctText.isVisible = true
+        --correctSoundChannel = audio.play(correctSound)
+        timer.performWithDelay(1000, HideCorrect)
+        score = score + 1
+
+        -- displaying the text object for the score
+        scoreObject.text = "Score:" .. score
+            
+    else
+        -- display the inccorect text object and sound
+        incorrectText.isVisible = true
+        --incorrectSoundChannel = audio.play(incorrectSound)
+        timer.performWithDelay(1000, HideIncorrect)
+
+        -- call the function to decrease lives
+        --DecreaseLives()
     end
 end
 
@@ -469,6 +518,16 @@ function scene:create( event )
     alternateAnswerBox1 = display.newText("", display.contentWidth * 0.9, 0, nil, 120)
     alternateAnswerBox2 = display.newText("", display.contentWidth * 0.9, 0, nil, 120)
     alternateAnswerBox3 = display.newText("", display.contentWidth * 0.9, 0, nil, 120)
+
+    -- create the correct text object and make it invisible
+    correctText = display.newText( "Correct!", display.contentWidth/2, display.contentHeight*2/3, nil, 50)
+    correctText:setTextColor(255,255, 0,255, 0,255)
+    correctText.isVisible = false
+
+    -- create the incorrect text object and make it invisible
+    incorrectText = display.newText( "Incorrect! Nice Try!", display.contentWidth/2, display.contentHeight*2/3, nil, 80)
+    incorrectText:setTextColor(255,255, 0,255, 0,255)
+    incorrectText.isVisible = false
 
     -- set the x positions of each of the answer boxes
     answerboxPreviousX = display.contentWidth * 0.9
