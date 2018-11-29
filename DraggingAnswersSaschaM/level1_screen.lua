@@ -95,6 +95,11 @@ local incorrectSound = audio.loadSound("Sounds/boo.mp3" )
 -- Setting a variable to an mp3 file
 local incorrectSoundChannel
 
+-- bkg Music
+local bkgMusic = audio.loadSound("Sounds/bkgMusic.mp3" ) 
+-- Setting a variable to an mp3 file
+local bkgMusicChannel
+
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
 -----------------------------------------------------------------------------------------
@@ -592,6 +597,8 @@ function scene:show( event )
         -- Called when the scene is now on screen.
         -- Insert code here to make the scene come alive.
         -- Example: start timers, begin animation, play audio, etc.
+        -- play bkg music
+        bkgMusicChannel = audio.play(bkgMusic)
         RestartLevel1()
         AddAnswerBoxEventListeners() 
 
