@@ -76,11 +76,24 @@ local alternateAnswerBox3PreviousX
 local userAnswerBoxPlaceholder
 
 -- counter
-local numCorrect
-local numIncorrect
+local numCorrect = 0
+local numIncorrect = 0
 -- sound effects
 local correctSound
 local booSound
+
+-----------------------------------------------------------------------------------------
+-- SOUNDS
+-----------------------------------------------------------------------------------------
+-- correct sound
+local correctSound = audio.loadSound("Sounds/Correct.wav" ) 
+-- Setting a variable to an mp3 file
+local correctSoundChannel
+
+-- incorrect sound
+local incorrectSound = audio.loadSound("Sounds/boo.mp3" ) 
+-- Setting a variable to an mp3 file
+local incorrectSoundChannel
 
 -----------------------------------------------------------------------------------------
 -- LOCAL FUNCTIONS
@@ -238,41 +251,16 @@ local function HideIncorrect()
     DisplayQuestion()
 end
 
--- function that operates decrese lives
----local function DecreaseLives()
-
-    -- reset the number of seconds left
-   -- lives = lives - 1
-    --incorrectSoundChannel = audio.play(incorrectSound)
-    -- go to you lose screen
-   -- end
---end
-
-local function Answers()
-    -- if the users answer and the correct answer are the same:
-    if (userAnswer == correctAnswer) then
-        correctText.isVisible = true
-        --correctSoundChannel = audio.play(correctSound)
-        timer.performWithDelay(1000, HideCorrect)
-        score = score + 1
-
-        -- displaying the text object for the score
-        scoreObject.text = "Score:" .. score
-            
-    else
-        -- display the inccorect text object and sound
-        incorrectText.isVisible = true
-        --incorrectSoundChannel = audio.play(incorrectSound)
-        timer.performWithDelay(1000, HideIncorrect)
-
-        -- call the function to decrease lives
-        --DecreaseLives()
-    end
-end
-
 -- Transitioning Function to YouWin screen
 local function YouWinTransitionLevel1( )
+    --if (numCorrect == 3) then
     composer.gotoScene("you_win", {effect = "fade", time = 500})
+end
+
+-- Transitioning Function to YouLose screen
+local function YouLoseTransitionLevel1( )
+    --if (numIncorrect == 2) then
+    composer.gotoScene("you_lose", {effect = "fade", time = 500})
 end
 
 -- Function to Restart Level 1
@@ -284,7 +272,35 @@ end
 
 -- Function to Check User Input
 local function CheckUserAnswerInput()
-          
+    if (userAnswer == correctAnswer) then
+        correctText.isVisible = true
+        -- play correct sound
+        correctSoundChannel = audio.play(correctSound)
+
+        timer.performWithDelay(1000, HideCorrect)
+        -- add 1 to numCorrect
+        numCorrect = numCorrect + 1
+        -- displaying the text object for the score
+        --scoreObject.text = "Score:" .. score
+        if (numCorrect == 3) then
+            YouWinTransitionLevel1( )
+        end
+            
+    else
+        -- display the inccorect text object and sound
+        incorrectText.isVisible = true
+        -- play incorrect sound
+        incorrectSoundChannel = audio.play(incorrectSound)
+
+        timer.performWithDelay(1000, HideIncorrect)
+        -- subtract 1 from numIncorrect
+        numIncorrect = numIncorrect + 1
+        
+        if (numIncorrect == 2) then
+            YouLoseTransitionLevel1( )
+        end
+    end
+
     timer.performWithDelay(1600, RestartLevel1) 
 end
 
