@@ -1,8 +1,6 @@
------------------------------------------------------------------------------------------
---
 -- game_level1.lua
--- Created by: Daniel
--- Date: Nov. 22nd, 2014
+-- by: Sascha Motz
+-- Date: Nov. 27nd, 2018
 -- Description: This is the level 1 screen of the game.
 -----------------------------------------------------------------------------------------
 
@@ -555,7 +553,6 @@ function scene:create( event )
     alternateAnswerBox1PreviousX = display.contentWidth * 0.9
     alternateAnswerBox2PreviousX = display.contentWidth * 0.9
     alternateAnswerBox3PreviousX = display.contentWidth * 0.9
-
 
     -- the black box where the user will drag the answer
     userAnswerBoxPlaceholder = display.newImageRect("Images/userAnswerBoxPlaceholder.png",  130, 130, 0, 0)

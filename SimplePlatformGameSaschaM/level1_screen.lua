@@ -1,8 +1,6 @@
------------------------------------------------------------------------------------------
---
 -- level1_screen.lua
--- Created by: Ms Raffin
--- Date: Nov. 22nd, 2014
+-- by: sacha Motz
+-- Date: Nov. 25nd, 2018
 -- Description: This is the level 1 screen of the game.
 -----------------------------------------------------------------------------------------
 
@@ -584,11 +582,11 @@ function scene:create( event )
     ball2.x = 490
     ball2.y = 170
     ball2.myName = "ball2"
---------------------------------------------
+
     -- Insert objects into the scene group in order to ONLY be associated with this scene
     sceneGroup:insert( ball2 )
 
-        --ball2
+        --ball3
     ball3 = display.newImageRect ("Images/SoccerBall.png", 70, 70)
     ball3.x = 770
     ball3.y = 275
@@ -627,7 +625,7 @@ function scene:show( event )
         -- Example: start timers, begin animation, play audio, etc.
 
         numLives = 3
-        uestionsAnswered = 0
+        questionsAnswered = 0
 
         -- make all soccer balls visible
         MakeSoccerBallsVisible()
